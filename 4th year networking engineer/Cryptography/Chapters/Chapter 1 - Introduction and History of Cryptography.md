@@ -89,7 +89,7 @@ The earliest known cryptographic techniques generally relied on transformations 
 In a transposition cipher, the symbols of the message are rearranged rather than necessarily replaced. If the original message contains the sequence
 
 $$  
-M = m_1m_2m_3\ldots m_n,  
+M = m_1m_2m_3\ldots m_n  ,
 $$
 
 a transposition produces another sequence containing the same symbols but in a different order:
