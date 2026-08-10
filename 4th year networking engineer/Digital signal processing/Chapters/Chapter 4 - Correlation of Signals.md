@@ -88,22 +88,22 @@ The **cross-correlation function** between two continuous-time signals (x(t)) an
 $$
 {
 \int_{-\infty}^{+\infty}  
-x(t)y^*(t-\tau),dt  
+x(t)y^*(t-\tau)dt  
 }  
 $$
 
 where:
 
-- (\tau) is the relative delay,
+- ($\tau$) is the relative delay,
     
-- (^*) denotes complex conjugation.
+- ($^*$) denotes complex conjugation.
     
 
 For real-valued signals:
 
-[  
+$$
 y^*(t-\tau)=y(t-\tau)  
-]
+$$
 
 and therefore:
 
