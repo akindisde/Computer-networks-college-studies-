@@ -364,19 +364,21 @@ Examples:
 
 # 6. Deterministic and Stochastic Models
 
-Network behavior may be modeled using either deterministic or stochastic approaches.
+Network behavior may be modeled using either deterministic or *stochastic* approaches.
+
+![[College studies/4th year networking engineer/Cryptography/Terminology#𝑨 - Stochastic|Terminology]]
 
 ## 6.1 Deterministic model
 
-A deterministic model assumes that all relevant variables are known exactly.
+<u>A deterministic model assumes that all relevant variables are known exactly.</u>
 
 For example, suppose packets arrive exactly every (10) ms.
 
 Then:
 
-[  
+$$
 T_a = 10 \text{ ms}  
-]
+$$
 
 for every packet arrival.
 
@@ -386,7 +388,7 @@ The behavior is therefore predictable.
 
 ## 6.2 Stochastic model
 
-In real networks, many variables are uncertain.
+In real networks, many variables are <u>uncertain</u>.
 
 Packet arrivals, packet sizes, service times, channel conditions, and user behavior can vary randomly.
 
@@ -394,19 +396,21 @@ A stochastic model therefore represents these variables using probability distri
 
 For example:
 
-[  
+$$
 A(t) \sim \text{Poisson process}  
-]
+$$
 
 may be used to model packet arrivals.
 
-Similarly, a service time (S) could be modeled using a random variable:
+Similarly, a service time ($S$) could be modeled using a random variable:
 
 $$
 S \sim \text{Exponential}(\mu)
 $$
 
-where (\mu) is the service rate.
+where ($\mu$) is the *service rate*.
+
+![[College studies/4th year networking engineer/Cryptography/Definitions#🧠 - Network service rate|Definitions]]
 
 Stochastic models are particularly important in performance evaluation because real network traffic is rarely perfectly deterministic.
 
@@ -416,34 +420,32 @@ Stochastic models are particularly important in performance evaluation because r
 
 Traffic modeling is fundamental to performance analysis.
 
-A network may perform very differently under different workloads even when the network architecture is unchanged.
+A network may perform very differently <u>under different workloads</u> even when the network architecture is unchanged.
 
 ## 7.1 Traffic intensity
 
 For a simple system, traffic intensity can be represented by:
 
-[  
+$$
 \rho = \frac{\lambda}{\mu}  
-]
+$$
 
 where:
 
-- (\lambda) = average arrival rate;
-    
-- (\mu) = average service rate.
-    
+- ($\lambda$) = average arrival rate
+- ($\mu$) = average service rate
 
 For a stable single-server system, we generally require:
 
-[  
+$$
 \rho < 1  
-]
+$$
 
 If:
 
-[  
+$$
 \rho \geq 1  
-]
+$$
 
 the average offered workload is at least as large as the service capacity, and an unlimited queue will not have a stable long-term average size.
 
@@ -455,58 +457,57 @@ This concept is central to queueing theory.
 
 The packet arrival rate is:
 
-[  
+$$
 \lambda = \frac{N}{T}  
-]
+$$
 
 where:
 
-- (N) = number of packets arriving during interval (T).
-    
+- ($N$) = number of packets arriving during interval ($T$)  
 
 Example:
 
 If 12,000 packets arrive during 10 seconds:
 
-[  
+$$
 \lambda = \frac{12000}{10}  
 =1200\text{ packets/s}  
-]
+$$
 
 ---
 
 ## 7.3 Bit rate
 
-If the average packet size is (L) bits, the offered bit rate is approximately:
+If the average packet size is ($L$) bits, the offered bit rate is approximately:
 
-[  
+$$
 R = \lambda L  
-]
+$$
 
 For example:
 
-[  
+$$ 
 \lambda = 1000\text{ packets/s}  
-]
+$$
 
 and
 
-[  
+$$
 L = 12000\text{ bits}  
-]
+$$
 
 give:
 
-[  
+$$
 R = 1000 \times 12000  
 =12,000,000\text{ bit/s}  
-]
+$$
 
 or:
 
-[  
+$$
 R=12\text{ Mbit/s}  
-]
+$$
 
 ---
 
@@ -514,11 +515,11 @@ R=12\text{ Mbit/s}
 
 ## 8.1 Definition
 
-**Performance evaluation** is the process of measuring or estimating how well a system performs according to defined criteria.
+**Performance evaluation** is the process of <mark style="background:#40a9ff">measuring or estimating how well a system performs according to defined criteria</mark>.
 
 The basic process is:
 
-[  
+$$
 \boxed{  
 \text{Model}  
 \rightarrow  
@@ -530,7 +531,7 @@ The basic process is:
 \rightarrow  
 \text{Interpretation}  
 }  
-]
+$$
 
 The evaluation should be based on clearly defined objectives.
 
@@ -542,9 +543,9 @@ The evaluation should be based on clearly defined objectives.
 
 Throughput is the amount of useful data successfully delivered per unit of time.
 
-[  
+$$
 X = \frac{\text{successfully transmitted data}}{\text{time}}  
-]
+$$
 
 It is commonly expressed in:
 

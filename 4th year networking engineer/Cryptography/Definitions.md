@@ -9,7 +9,8 @@ Information theory is a mathematical framework founded by Claude Shannon that de
 ###### 🧠 - Propagation delay
 the time it takes for the first bit of a signal to travel from a sender to a receiver across a communication medium, or for an output to respond to an input change in an electronic circuit
 
-###### 🧠 - 
+###### 🧠 - Network service rate
+the speed of data transmission through a telecommunications system, a utility transmission charge, or an operational queue-processing capacity
 
 ###### 🧠 - 
 

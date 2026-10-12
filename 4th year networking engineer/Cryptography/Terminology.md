@@ -15,7 +15,8 @@ the degree of variation in sentence length and structural complexity throughout 
 ###### 𝑨 - Network jitter
 the statistical variance in the arrival time of data packets over a network
 
-###### 𝑨 - 
+###### 𝑨 - Stochastic
+**random**, **probabilistic**, or involving a **random variable** that causes outcomes to vary by chance
 
 ###### 𝑨 - 
 
