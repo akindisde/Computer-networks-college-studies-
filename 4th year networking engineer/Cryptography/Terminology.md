@@ -9,9 +9,11 @@ an organized plan, a structured system or program, or a secret and sometimes dis
 ###### 𝑨 - Ciphertext
 the scrambled, unreadable output that is produced when readable information—known as **plaintext**—is converted using a mathematical algorithm and an encryption key
 
-###### 𝑨 - 
+###### 𝑨 - Burstiness
+the degree of variation in sentence length and structural complexity throughout a written text, or the intermittent, uneven clustering of events over time in systems and data
 
-###### 𝑨 - 
+###### 𝑨 - Network jitter
+the statistical variance in the arrival time of data packets over a network
 
 ###### 𝑨 - 
 

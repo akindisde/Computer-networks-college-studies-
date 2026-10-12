@@ -4,7 +4,7 @@
 
 Modern communication networks are complex systems composed of numerous interconnected elements: links, routers, switches, base stations, mobile devices, servers, and protocols.
 
-As the size and complexity of a network increase, it becomes difficult to determine its behavior solely through experimentation on the real system. Network modeling and performance evaluation provide a systematic approach to understanding, predicting, and optimizing network behavior.
+As the size and complexity of a network increase, it becomes difficult to determine its behavior solely through experimentation on the real system. Network <mark style="background:#40a9ff">modeling and performance evaluation provide a systematic approach to understanding, predicting, and optimizing network behavior</mark>.
 
 The central question is:
 
@@ -13,23 +13,14 @@ The central question is:
 Network performance evaluation attempts to answer questions such as:
 
 - How much traffic can the network support?
-    
 - What is the expected packet delay?
-    
 - What is the probability of packet loss?
-    
 - How does congestion develop?
-    
 - How many users can a wireless cell support?
-    
 - What happens when traffic increases?
-    
 - Which network configuration provides the best performance?
-    
 - How does mobility affect network performance?
-    
 - What is the impact of a failure or a change in topology?
-    
 
 This chapter introduces the fundamental principles required to answer these questions.
 
@@ -39,9 +30,9 @@ This chapter introduces the fundamental principles required to answer these ques
 
 ## 2.1 Definition
 
-A **network model** is a simplified mathematical or computational representation of a real communication network.
+A **network model** is a simplified <u>mathematical or computational representation</u> of a real communication network.
 
-A model does not reproduce every physical detail of the real system. Instead, it retains the characteristics that are relevant to the problem being studied.
+A model does not reproduce every physical detail of the real system. Instead, it retains the <u>characteristics that are relevant</u> to the problem being studied.
 
 We can represent the modeling process as:
 
@@ -61,11 +52,11 @@ The purpose of abstraction is to reduce complexity while preserving the properti
 
 ## 2.2 Why do we model networks?
 
-Network modeling is useful for several reasons.
+Network modeling is useful for several reasons:
 
 ### 1. Prediction
 
-A model can predict how a network behaves under different traffic conditions.
+A model can predict how a network behaves under different <u>traffic conditions</u>.
 
 For example:
 
@@ -77,7 +68,7 @@ $$
 \text{delay} \uparrow  
 $$
 
-where ($\lambda$) represents the packet arrival rate.
+where ($\lambda$) represents the **packet arrival rate**.
 
 ### 2. Design
 
@@ -85,38 +76,26 @@ Models allow engineers to compare different architectures before implementing th
 
 For example, we may compare:
 
-- a 1 Gbit/s link with a 10 Gbit/s link;
-    
-- different routing algorithms;
-    
-- different buffer sizes;
-    
-- different wireless channel configurations.
-    
+- a 1 Gbit/s link with a 10 Gbit/s link
+- different routing algorithms
+- different buffer sizes
+- different wireless channel configurations
 
 ### 3. Optimization
 
 A model can identify configurations that minimize:
 
-- delay,
-    
-- packet loss,
-    
-- energy consumption,
-    
-- congestion,
-    
+- delay
+- packet loss
+- energy consumption
+- congestion
 
 while maximizing:
 
-- throughput,
-    
-- reliability,
-    
-- capacity,
-    
-- resource utilization.
-    
+- throughput
+- reliability
+- capacity
+- resource utilization
 
 ### 4. Cost reduction
 
@@ -135,57 +114,39 @@ A simplified model makes it possible to isolate the effect of individual variabl
 A network model generally contains four fundamental elements:
 
 1. **Entities**
-    
 2. **Resources**
-    
 3. **Workload**
-    
 4. **Performance measures**
-    
 
 ## 3.1 Entities
 
-Entities are the objects participating in network communication.
+Entities are the objects <mark style="background:#40a9ff">participating in network communication</mark>.
 
 Examples include:
 
-- packets,
-    
-- flows,
-    
-- users,
-    
-- mobile terminals,
-    
-- routers,
-    
-- switches,
-    
-- base stations,
-    
-- servers.
-    
+- packets
+- flows
+- users
+- mobile terminals
+- routers
+- switches
+- base stations
+- servers
 
 ---
 
 ## 3.2 Resources
 
-Resources are the network elements used to provide communication services.
+Resources are the network elements <mark style="background:#40a9ff">used to provide communication services</mark>.
 
 Examples:
 
-- transmission links,
-    
-- buffers,
-    
-- radio channels,
-    
-- processing capacity,
-    
-- spectrum,
-    
-- CPU resources.
-    
+- transmission links
+- buffers
+- radio channels
+- processing capacity
+- spectrum
+- CPU resources
 
 A resource can become a **bottleneck** when demand exceeds its capacity.
 
@@ -193,30 +154,26 @@ A resource can become a **bottleneck** when demand exceeds its capacity.
 
 ## 3.3 Workload
 
-The workload represents the traffic imposed on the network.
+The workload represents the <mark style="background:#40a9ff">traffic imposed on the network</mark>.
 
 It may be characterized by:
 
-- packet arrival rate,
-    
-- packet size,
-    
-- number of users,
-    
-- flow duration,
-    
-- session arrival rate,
-    
-- traffic burstiness,
-    
-- mobility patterns.
-    
+- packet arrival rate
+- packet size
+- number of users
+- flow duration
+- session arrival rate
+- traffic *burstiness*
+
+![[College studies/4th year networking engineer/Cryptography/Terminology#𝑨 - Burstiness|Terminology]]
+
+- mobility patterns
 
 For packet traffic, the arrival rate is commonly represented by:
 
-[  
+$$
 \lambda = \frac{\text{number of arriving packets}}{\text{unit of time}}  
-]
+$$
 
 and is generally expressed in packets/s.
 
@@ -224,26 +181,21 @@ and is generally expressed in packets/s.
 
 ## 3.4 Performance measures
 
-Performance measures quantify the behavior of the network.
+Performance measures <mark style="background:#40a9ff">quantify the behavior of the network</mark>.
 
 Typical metrics include:
 
-- throughput,
-    
-- delay,
-    
-- jitter,
-    
-- packet loss,
-    
-- blocking probability,
-    
-- utilization,
-    
-- availability,
-    
-- energy consumption.
-    
+- throughput
+- delay
+- *jitter*
+
+![[College studies/4th year networking engineer/Cryptography/Terminology#𝑨 - Network jitter|Terminology]]
+
+- packet loss
+- blocking probability
+- utilization
+- availability
+- energy consumption
 
 These metrics will be studied in detail throughout the course.
 
@@ -257,49 +209,38 @@ Network modeling depends strongly on the type of network.
 
 A wired network uses physical transmission media such as:
 
-- optical fiber,
-    
-- copper cables,
-    
-- coaxial cables.
-    
+- optical fiber
+- copper cables
+- coaxial cables
 
 Examples include:
 
-- Ethernet networks,
-    
-- data-center networks,
-    
-- IP backbone networks,
-    
-- access networks.
-    
+- Ethernet networks
+- data-center networks
+- IP backbone networks
+- access networks
 
-A simplified wired network can be represented as a graph:
+A **simplified wired network** can be represented as a graph:
 
-[  
+$$
 G=(V,E)  
-]
+$$
 
 where:
 
-- (V) is the set of network nodes;
-    
-- (E) is the set of communication links.
-    
+- ($V$) is the set of network nodes
+- ($E$) is the set of communication links
 
 Each link may be characterized by:
 
-- bandwidth (C),
-    
-- propagation delay (d_p),
-    
-- transmission delay (d_t),
-    
-- queue size (B),
-    
-- packet loss probability.
-    
+- bandwidth ($C$)
+- *propagation delay* ($d_p$)
+
+![[College studies/4th year networking engineer/Cryptography/Definitions#🧠 - Propagation delay|Definitions]]
+
+- transmission delay ($d_t$)
+- queue size ($B$)
+- packet loss probability
 
 ---
 
@@ -309,33 +250,22 @@ Mobile networks introduce additional sources of variability.
 
 Examples include:
 
-- cellular networks,
-    
-- wireless LANs,
-    
-- mobile ad hoc networks,
-    
-- vehicular networks,
-    
-- wireless sensor networks.
-    
+- cellular networks
+- wireless LANs
+- mobile ad hoc networks
+- vehicular networks
+- wireless sensor networks
 
-Unlike wired links, wireless links are affected by:
+Wireless links are affected by:
 
-- channel fading,
-    
-- interference,
-    
-- path loss,
-    
-- noise,
-    
-- user mobility,
-    
-- radio resource allocation.
-    
+- channel fading
+- interference
+- path loss
+- noise
+- user mobility
+- radio resource allocation
 
-Therefore, the network state may vary with time and location.
+Therefore, <mark style="background:#ff4d4f">the network state may vary with time and location</mark>.
 
 A mobile network model may need to represent:
 
@@ -356,7 +286,7 @@ $$
 
 # 5. Abstraction Levels
 
-One of the most important principles of modeling is choosing the appropriate level of abstraction.
+One of the most important principles of modeling is <u>choosing the appropriate level of abstraction</u>.
 
 A network can be modeled at several levels.
 
@@ -364,35 +294,25 @@ A network can be modeled at several levels.
 
 The model describes physical phenomena such as:
 
-- signal power,
-    
-- noise,
-    
-- interference,
-    
-- modulation,
-    
-- coding,
-    
-- propagation.
-    
+- signal power
+- noise
+- interference
+- modulation
+- coding
+- propagation
 
-For example, the received power can be represented conceptually as:
+For example, the **received power** can be represented conceptually as:
 
-[  
+$$
 P_r = P_t G_t G_r L  
-]
+$$
 
 where:
 
-- (P_t) = transmitted power;
-    
-- (G_t) = transmitter antenna gain;
-    
-- (G_r) = receiver antenna gain;
-    
-- (L) = propagation-related loss factor.
-    
+- ($P_t$) = transmitted power 
+- ($G_t$) = transmitter antenna gain
+- ($G_r$) = receiver antenna gain
+- ($L$) = propagation-related loss factor
 
 ---
 
@@ -402,16 +322,11 @@ The model focuses on communication links.
 
 Important parameters include:
 
-- bandwidth,
-    
-- data rate,
-    
-- bit error rate,
-    
-- packet error rate,
-    
-- propagation delay.
-    
+- bandwidth
+- data rate
+- bit error rate
+- packet error rate
+- propagation delay
 
 ---
 
@@ -419,16 +334,11 @@ Important parameters include:
 
 The model focuses on:
 
-- routing,
-    
-- topology,
-    
-- congestion,
-    
-- queues,
-    
-- packet forwarding.
-    
+- routing
+- topology
+- congestion
+- queues
+- packet forwarding
 
 At this level, physical details may be abstracted into parameters such as link capacity and error probability.
 
@@ -440,18 +350,13 @@ The model focuses on user and application behavior.
 
 Examples:
 
-- web traffic,
-    
-- video streaming,
-    
-- VoIP,
-    
-- file transfers,
-    
-- IoT traffic.
-    
+- web traffic
+- video streaming
+- VoIP
+- file transfers
+- IoT traffic
 
-The correct abstraction depends on the objective of the study.
+<mark style="background:rgba(205, 244, 105, 0.55)">The correct abstraction depends on the objective of the study.</mark>
 
 > **A good model is not necessarily the most detailed model. It is the model that contains sufficient detail to answer the question being studied.**
 
