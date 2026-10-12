@@ -69,15 +69,15 @@ A model can predict how a network behaves under different traffic conditions.
 
 For example:
 
-[  
+$$ 
 \lambda \uparrow  
 \quad\Rightarrow\quad  
 \text{queue length} \uparrow  
 \quad\Rightarrow\quad  
 \text{delay} \uparrow  
-]
+$$
 
-where (\lambda) represents the packet arrival rate.
+where ($\lambda$) represents the packet arrival rate.
 
 ### 2. Design
 

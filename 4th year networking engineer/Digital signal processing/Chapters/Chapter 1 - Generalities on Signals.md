@@ -48,9 +48,9 @@ Signal processing is closely related to the study of **systems**.
 
 A system is an operation or physical device that transforms an input signal into an output signal:
 
-[  
-x(t) \longrightarrow \boxed{\text{System}} \longrightarrow y(t)  
-]
+$$
+x(t) \longrightarrow \boxed{\text{System}} \longrightarrow y(t)
+$$
 
 where:
 
@@ -61,9 +61,9 @@ where:
 
 A simple example is an amplifier:
 
-[  
-y(t)=A x(t)  
-]
+$$ 
+y(t)=A x(t)
+$$
 
 where (A) is the amplification factor.
 
@@ -167,21 +167,21 @@ t \quad \text{or} \quad n
 
 For spatial signals, it can be a spatial coordinate:
 
-[  
+$$
 x,; y,; z  
-]
+$$
 
 For a discrete-time signal, the independent variable is conventionally an integer index:
 
-[  
+$$
 n\in\mathbb{Z}  
-]
+$$
 
 This distinction is important:
 
-[  
+$$  
 x(t) \neq x[n]  
-]
+$$
 
 The first is a continuous-time signal, while the second is a discrete-time sequence.
 
@@ -193,9 +193,9 @@ The **amplitude** is the value taken by the signal at a particular point in its 
 
 For a signal (x(t)), the value:
 
-[  
-x(t_0)  
-]
+$$  
+x(t_0)
+$$
 
 is its amplitude at time (t_0).
 

@@ -1,18 +1,24 @@
 # Chapter 1: Introduction and History of Cryptography
 
-Cryptography is one of the fundamental disciplines underlying modern information security. It is involved in Internet communications, banking systems, payment cards, mobile phones, private networks, authentication systems, digital signatures, secure messaging, and the protection of stored data. Yet cryptography did not begin with computers. Long before computers, networks, and the Internet existed, people already needed to protect information from individuals who were not supposed to understand or obtain it.
+Cryptography is one of the fundamental disciplines <u>underlying modern information security</u>. It is involved in Internet communications, banking systems, payment cards, mobile phones, private networks, authentication systems, digital signatures, secure messaging, and the protection of stored data. Yet cryptography did not begin with computers. Long before computers, networks, and the Internet existed, people already needed to protect information from individuals who were not supposed to understand or obtain it.
 
-Understanding cryptography therefore requires understanding how it evolved. Early techniques for concealing messages often relied on simple transformations of text. Modern cryptographic systems, by contrast, rely on sophisticated mathematical constructions and precise assumptions about what an adversary can and cannot do. This evolution is not simply a matter of improving old encryption techniques. It represents a fundamental change in how the security problem itself is defined. Modern cryptography does not merely attempt to hide a message. It provides a collection of security services designed to protect information and communication systems against different classes of attacks.
+Understanding cryptography therefore requires understanding how it evolved. Early techniques for concealing messages often relied on simple transformations of text. Modern cryptographic systems, by contrast, rely on sophisticated mathematical constructions and precise assumptions about what an adversary can and cannot do. This evolution is not simply a matter of improving old encryption techniques. It represents a fundamental change in <mark style="background:#40a9ff">how the security problem itself is defined</mark>. Modern cryptography does not merely attempt to hide a message. <u>It provides a collection of security services designed to protect information and communication systems against different classes of attacks</u>.
 
 ## 1. Elementary Definitions
 
 Before studying cryptographic algorithms, it is essential to establish precise terminology. Many beginner-level misunderstandings arise because different concepts are casually grouped under the general word "cryptography." Encrypting data, computing a cryptographic hash, authenticating a user, and digitally signing a document are different operations that address different security problems.
 
-The word **cryptography** comes from the Ancient Greek _kryptós_, meaning "hidden," and _gráphein_, meaning "to write." Its literal historical meaning is therefore close to "hidden writing." Historically, cryptography primarily referred to techniques for transforming information so that it would not be intelligible to someone who did not possess the information necessary to recover or interpret it.
+The word **cryptography** comes from the Ancient Greek _kryptós_, meaning "hidden," and _gráphein_, meaning "to write." Its literal historical meaning is therefore close to "hidden writing." Historically, cryptography primarily referred to techniques for transforming information so that it would not be *intelligible* to someone who <u>did not possess the information necessary to recover or interpret it</u>.
 
-In its modern sense, cryptography has become much broader. It can be understood as the scientific and technical discipline concerned with designing, analyzing, and using mathematical mechanisms to protect information and communications against adversaries. It relies heavily on mathematics, including algebra, modular arithmetic, number theory, probability, information theory, and computational complexity.
+![[College studies/4th year networking engineer/Cryptography/Terminology#𝑨 - intelligible|Terminology]]
 
-It is important to distinguish **cryptography** from **cryptanalysis**. Cryptography focuses on constructing mechanisms that provide security properties. Cryptanalysis studies methods for analyzing those mechanisms and, when possible, bypassing them, extracting secret information, or demonstrating that they fail to provide their intended security properties. The two disciplines are complementary. A cryptographic construction should not be considered secure merely because it appears complicated; it must withstand appropriate forms of cryptanalytic analysis.
+In its modern sense, cryptography has become much broader. It can be understood as the scientific and technical discipline concerned with designing, analyzing, and using mathematical mechanisms to protect information and communications against adversaries. <mark style="background:#40a9ff">It relies heavily on mathematics</mark>, including algebra, modular arithmetic, *number theory*, probability, *information theory*, and computational complexity.
+
+![[College studies/4th year networking engineer/Cryptography/Definitions#🧠 - Number theory|Definitions]]
+
+![[College studies/4th year networking engineer/Cryptography/Definitions#🧠 - Information theory|Definitions]]
+
+It is important to distinguish **cryptography** from **cryptanalysis**. Cryptography focuses on <u>constructing</u> mechanisms that provide security properties. Cryptanalysis studies methods for <u>analyzing</u> those mechanisms and, when possible, <u>bypassing</u> them, extracting secret information, or demonstrating that they fail to provide their intended security properties. The two disciplines are complementary. A cryptographic construction should not be considered secure merely because it appears complicated; <mark style="background:#ff4d4f">it must withstand appropriate forms of cryptanalytic analysis</mark>.
 
 The broader field containing both cryptography and cryptanalysis is generally called **cryptology**. We can therefore think of cryptology as encompassing two complementary activities: cryptography, which designs mechanisms for protection, and cryptanalysis, which studies their weaknesses and the ways in which an adversary might attack them.
 
@@ -30,55 +36,83 @@ $$
 M = D_K(C)  
 $$
 
-A correctly functioning encryption scheme must allow the original message to be recovered from the ciphertext under the appropriate key. Thus:
+A correctly functioning encryption *scheme* must allow the original message to be recovered from the ciphertext under the appropriate key. Thus:
 
 $$  
 D_K(E_K(M)) = M  
 $$
 
-This representation is deliberately abstract. It allows us to understand the basic principle without depending on a particular algorithm. In some systems, Alice and Bob use the same secret key for encryption and decryption. This is called **symmetric cryptography**. In other systems, encryption and decryption involve different but mathematically related keys. This is called **asymmetric cryptography**, or **public-key cryptography**.
+![[College studies/4th year networking engineer/Cryptography/Terminology#𝑨 - Scheme|Terminology]]
 
-The concept of the **key** is central to cryptography. A common beginner misconception is that a cryptographic algorithm itself must remain secret in order for the system to be secure. Modern cryptography takes the opposite approach. The algorithm can, and generally should, be public. Security should primarily depend on the secrecy of the appropriate key. This principle is traditionally associated with **Kerckhoffs's principle**, formulated in the nineteenth century: a cryptographic system should remain secure even if everything about the system, except the secret key, is known to the adversary.
+This representation is deliberately abstract. It allows us to understand the basic principle without depending on a particular algorithm. In some systems, Alice and Bob use the same secret key for encryption and decryption. This is called **symmetric cryptography**. In other systems, encryption and decryption involve <mark style="background:#40a9ff">different but mathematically related keys</mark>. This is called **asymmetric cryptography**, or **public-key cryptography**.
+
+The concept of the **key** is central to cryptography. A common beginner misconception is that a cryptographic algorithm itself must remain secret in order for the system to be secure. Modern cryptography takes the opposite approach. <mark style="background:#40a9ff">The algorithm can, and generally should, be public</mark>. <u>Security should primarily depend on the secrecy of the appropriate key</u>. This principle is traditionally associated with **Kerckhoffs's principle**, formulated in the nineteenth century: 
+
+> a cryptographic system should remain secure even if everything about the system, except the secret key, is known to the adversary.
 
 This principle is important because it separates two very different notions: secrecy of the algorithm and secrecy of the key. If a system depends on keeping its algorithm secret, discovering or leaking the algorithm can compromise the entire system. If the algorithm is public and only the key must remain secret, researchers can publish, analyze, test, and audit the algorithm without revealing the secret that actually protects the data.
 
-Cryptography must also be distinguished from **encoding**. Encoding transforms data from one representation into another according to a known rule, usually to facilitate storage, transmission, or interpretation. For example, Base64 represents binary data using a particular set of characters. Base64 is not a confidentiality mechanism: anyone who knows the encoding can decode it. Encryption, in contrast, is intended to prevent an unauthorized party from obtaining the protected information in a meaningful form without the appropriate key.
+Cryptography must also be distinguished from **encoding**. Encoding transforms data from one representation into another <mark style="background:#ff4d4f">according to a known rule</mark>, usually to facilitate storage, transmission, or interpretation. For example, Base64 represents binary data using a particular set of characters. Base64 is not a confidentiality mechanism: anyone who knows the encoding can decode it. Encryption, in contrast, is intended to prevent an unauthorized party from obtaining the protected information in a meaningful form without the appropriate key.
 
-**Compression** is also fundamentally different from cryptography. Compression attempts to represent information using fewer bits, while cryptography attempts to provide a defined security property. A piece of data can therefore be compressed and then encrypted, but the two operations serve completely different purposes.
+**Compression** is also fundamentally different from cryptography. Compression attempts to represent information <mark style="background:#ff4d4f">using fewer bits</mark>, while cryptography attempts to provide a defined security property. A piece of data can therefore be compressed and then encrypted, but the two operations serve completely different purposes.
 
-We must also distinguish encryption from **cryptographic hash functions**. A hash function takes an input of arbitrary length and produces an output of generally fixed length called a **hash**, **digest**, or **hash value**. We can represent this operation as:
+We must also distinguish encryption from **cryptographic hash functions**. A hash function takes an input of arbitrary length and produces an output of <mark style="background:#ff4d4f">generally fixed length</mark> called a **hash**, **digest**, or **hash value**. We can represent this operation as:
 
 $$  
 h = H(M)  
 $$
 
-Unlike encryption, a cryptographic hash function is not normally designed to allow the original message $M$ to be recovered from $h$. Hash functions are instead used to provide several security properties, particularly in the areas of integrity, authentication, digital signatures, and password protection. This distinction will become especially important when we study hash functions in detail.
+Unlike encryption, a <mark style="background:#ff4d4f">cryptographic hash function is not normally designed to allow the original message</mark> $M$ <mark style="background:#ff4d4f">to be recovered from</mark> $h$. 
+
+Hash functions are instead used to provide several security properties, particularly in the areas of integrity, authentication, digital signatures, and password protection. This distinction will become especially important when we study hash functions in detail.
+
+This diagram should help you visualize it better:
+
+![[Pasted image 20261012171413.png]]
 
 ## 2. Objectives and Security Services of Cryptography
 
 Historically, the primary concern of cryptography was often **confidentiality**: Alice wanted to prevent a third party from understanding the contents of her message. In modern information systems, confidentiality remains fundamental, but it is far from sufficient. A secure communication system must generally answer several different security questions.
 
-The first question is: "Who is allowed to read the information?" This concerns **confidentiality**. Confidentiality is the property of preventing unauthorized parties from obtaining meaningful information about protected data. Encryption is one of the primary mechanisms used to provide confidentiality. If Alice sends an encrypted message to Bob and Eve intercepts the ciphertext, Eve should not be able to determine the protected content within the limits of the defined security model.
+The first question is: <mark style="background:#40a9ff">"Who is allowed to read the information?"</mark> This concerns **confidentiality**. 
+
+> Confidentiality is the property of preventing unauthorized parties from obtaining meaningful information about protected data.
+
+Encryption is <u>one of the primary mechanisms</u> used to provide confidentiality. If Alice sends an encrypted message to Bob and Eve intercepts the *ciphertext*, Eve should not be able to determine the protected content within the limits of the defined security model.
+
+![[College studies/4th year networking engineer/Cryptography/Terminology#𝑨 - Ciphertext|Terminology]]
 
 Confidentiality does not necessarily mean that the existence of the communication itself is secret. A system may protect the contents of a message while still exposing metadata such as the existence of a connection, network addresses, timing information, or approximate message sizes. Protecting content and protecting metadata are therefore separate security problems.
 
-The second question is: "Is the information I received the same information that was sent?" This concerns **integrity**. Integrity is the property of detecting or preventing unauthorized modification of data. Suppose Alice sends Bob an instruction saying "transfer $100." If Eve can modify the message so that Bob receives "transfer $10,000," confidentiality alone clearly does not provide adequate protection.
+The second question is: <mark style="background:#40a9ff">"Is the information I received the same information that was sent?"</mark> This concerns **integrity**. 
+
+> Integrity is the property of detecting or preventing unauthorized modification of data.
+
+Suppose Alice sends Bob an instruction saying "transfer $100." If Eve can modify the message so that Bob receives "transfer $10,000," confidentiality alone clearly does not provide adequate protection.
 
 Integrity is therefore concerned with detecting unauthorized changes to data. Modern cryptographic systems can provide integrity through mechanisms such as **message authentication codes**, or **MACs**, and **authenticated encryption** schemes. Digital signatures can also provide protection against modification while additionally providing a way to associate data with a particular signing key.
 
-A third major property is **authentication**. The term authentication can refer to several related but distinct problems, so it should be used precisely. In communication security, authentication may answer the question: "Did this message actually originate from the entity that claims to have sent it?" In an information system, authentication can instead refer to verifying the identity of a user or device.
+A third major property is **authentication**. The term authentication can refer to several related but distinct problems, so it should be used precisely. 
 
-This distinction leads to concepts such as **message authentication**, **source authentication**, and **entity authentication**, depending on the context. A cryptographic mechanism must be evaluated according to the exact property it is intended to provide.
+>In communication security, authentication may answer the question: <mark style="background:#40a9ff">"Did this message actually originate from the entity that claims to have sent it?"</mark> In an information system, authentication can instead refer to verifying the identity of a user or device.
 
-Another important property is **non-repudiation**, traditionally associated with digital signatures. In appropriate settings, non-repudiation aims to provide evidence that can associate an operation or statement with a particular entity and make subsequent denial more difficult. However, it is important to be precise: non-repudiation is not simply a mathematical property that automatically appears whenever a digital signature is used. Its meaning and effectiveness depend on the protocol, key management, identity management, trust model, and sometimes legal and organizational procedures.
+This distinction leads to concepts such as **message authentication**, **source authentication**, and **entity authentication**, depending on the context. <mark style="background:#40a9ff">A cryptographic mechanism must be evaluated according to the exact property it is intended to provide</mark>.
 
-Cryptographic services can therefore address different needs: protecting confidentiality, preserving integrity, authenticating data or entities, establishing shared secrets, and producing digital signatures. It is essential to distinguish these properties because a particular cryptographic algorithm does not automatically provide all of them.
+![[Pasted image 20261012185946.png]]
 
-For example, an encryption mechanism designed only to protect confidentiality does not automatically guarantee integrity. An attacker may sometimes modify ciphertext without knowing the plaintext or the secret key. This is one reason modern cryptography places considerable emphasis on **authenticated encryption**, whose goal is to protect confidentiality and integrity together under a precise security definition.
+Another important property is **non-repudiation**, traditionally associated with digital signatures. 
 
-Another fundamental concept is **secret-key management**. The security of a cryptographic system depends not only on the algorithm being used, but also on how keys are generated, stored, distributed, rotated, backed up, revoked, and destroyed. This collection of problems is generally called **key management**. In practice, an excellent cryptographic primitive combined with poor key management can produce a completely insecure system.
+>In appropriate settings, non-repudiation aims to provide evidence that can associate an operation or statement with a particular entity and make subsequent denial more difficult. 
 
-This leads to a crucial idea: cryptography is not merely a collection of algorithms. It is a set of mechanisms integrated into systems that have security goals, users, adversaries, keys, protocols, and assumptions. A cryptographic primitive can be mathematically robust while being used incorrectly inside a real-world protocol.
+However, it is important to be precise: non-repudiation is not simply a mathematical property that automatically appears whenever a digital signature is used. Its meaning and effectiveness depend on the protocol, key management, identity management, trust model, and sometimes legal and organizational procedures.
+
+Cryptographic services can therefore address different needs: protecting confidentiality, preserving integrity, authenticating data or entities, establishing shared secrets, and producing digital signatures. It is essential to distinguish these properties because <mark style="background:#ff4d4f">a particular cryptographic algorithm does not automatically provide all of them</mark>.
+
+For example, an encryption mechanism designed only to protect confidentiality does not automatically guarantee integrity. An attacker may sometimes modify ciphertext <u>without knowing the plaintext or the secret key</u>. This is one reason modern cryptography places considerable emphasis on **authenticated encryption**, whose goal is to protect confidentiality and integrity together under a precise security definition.
+
+Another fundamental concept is **secret-key management**. The security of a cryptographic system depends not only on the algorithm being used, but also on <mark style="background:#40a9ff">how keys are generated, stored, distributed, rotated, backed up, revoked, and destroyed</mark>. This collection of problems is generally called **key management**. In practice, an excellent cryptographic primitive combined with poor key management can produce a completely insecure system.
+
+This leads to a crucial idea: cryptography is not merely a collection of algorithms. It is a set of <u>mechanisms integrated into systems</u> that have security goals, users, adversaries, keys, protocols, and assumptions. A cryptographic primitive can be mathematically robust while being used incorrectly inside a real-world protocol.
 
 ## 3. Classical Cryptography: History, Evolution, and General Attacks
 
