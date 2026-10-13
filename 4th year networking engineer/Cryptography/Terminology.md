@@ -1,4 +1,4 @@
-#terminology #cryptography
+#terminology #college_studies
 
 ###### 𝑨 - Intelligible
 clear, distinct, and easy enough to understand, whether spoken or written
@@ -18,9 +18,12 @@ the statistical variance in the arrival time of data packets over a network
 ###### 𝑨 - Stochastic
 **random**, **probabilistic**, or involving a **random variable** that causes outcomes to vary by chance
 
-###### 𝑨 - 
+###### 𝑨 - Attack model
+a structured representation that defines an adversary's assumed capabilities, entry points, motivations, constraints, and step-by-step paths to compromise a system
 
-###### 𝑨 - 
+###### 𝑨 - Obscurity
+the state of being unknown to many people or the quality of being unclear and hard to understand
+
 ###### 𝑨 - 
 
 ###### 𝑨 - 

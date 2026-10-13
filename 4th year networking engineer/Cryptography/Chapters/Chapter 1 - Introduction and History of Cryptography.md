@@ -118,7 +118,7 @@ This leads to a crucial idea: cryptography is not merely a collection of algorit
 
 The history of cryptography is closely connected to the history of secret communication. For centuries, cryptographic techniques were primarily used in military, diplomatic, political, and governmental contexts. The basic problem was often straightforward: an individual or organization needed to send a message to an intended recipient while preventing a third party who could intercept the communication from understanding it.
 
-The earliest known cryptographic techniques generally relied on transformations of text. Some methods changed the positions of symbols, while others replaced symbols with different symbols. These two broad families are traditionally called **transposition** and **substitution**.
+The earliest known cryptographic techniques generally relied on <mark style="background:#40a9ff">transformations of text</mark>. Some methods changed the <u>positions of symbols</u>, while others <u>replaced symbols with different symbols</u>. These two broad families are traditionally called **transposition** and **substitution**.
 
 In a transposition cipher, the symbols of the message are rearranged rather than necessarily replaced. If the original message contains the sequence
 
@@ -140,27 +140,35 @@ $$
 C_i = f(M_i).  
 $$
 
-One of the best-known historical examples is the **Caesar cipher**, in which each letter of the alphabet is replaced by a letter a fixed number of positions away. If letters are represented by the integers $0$ through $25$, the encryption operation can be written as:
+One of the best-known historical examples is the **Caesar cipher**, in which each letter of the alphabet is replaced by a letter <u>a fixed number of positions away</u>. If letters are represented by the integers $0$ through $25$, the encryption operation can be written as:
 
 $$  
-E_k(x) = (x+k) \bmod 26.  
+ y = E_k(x) = (x+k) \bmod 26.  
 $$
 
 The decryption operation is:
 
 $$  
-D_k(y) = (y-k) \bmod 26.  
+x = D_k(y) = (y-k) \bmod 26.  
 $$
 
-The modulo $26$ operation makes the alphabet wrap around when the end is reached. This simple example is already useful mathematically because it demonstrates how an encryption rule can be expressed precisely as a function.
+<mark style="background:#ff4d4f">The modulo $26$ operation makes the alphabet wrap around when the end is reached</mark>. This simple example is already useful mathematically because it demonstrates how an encryption rule can be expressed precisely as a function.
 
-However, the Caesar cipher is extremely weak. Its key space is very small, so an attacker can simply try every possible value of $k$. This is a basic example of a **brute-force attack**, in which the adversary systematically tests possible keys until a plausible result is found.
+However, the Caesar cipher is extremely weak. Its *key space* is very small, so an attacker can simply try every possible value of $k$. This is a basic example of a **brute-force attack**, in which the adversary systematically tests possible keys until a plausible result is found.
 
-The weakness of classical systems does not come only from their small key spaces. Natural languages have statistical structure that can also be exploited. In a given language, some letters occur more frequently than others, and certain sequences of letters occur more frequently than others. A monoalphabetic substitution preserves much of this statistical structure. An attacker can therefore analyze the frequencies of symbols in the ciphertext and attempt to infer the substitution mapping.
+![[College studies/4th year networking engineer/Cryptography/Definitions#🧠 - Key space|Definitions]]
+
+The weakness of classical systems does not come only from their small key spaces. Natural languages have <u>statistical structure</u> that can also be exploited. In a given language, some letters occur more frequently than others, and certain sequences of letters occur more frequently than others. A *monoalphabetic* substitution preserves much of this statistical structure. An attacker can therefore analyze the frequencies of symbols in the ciphertext and attempt to infer the substitution mapping.
+
+![[College studies/4th year networking engineer/Cryptography/Definitions#🧠 - Monoalphabetic cipher|Definitions]]
 
 This technique is known as **frequency analysis**. It was historically important because it demonstrated that a cipher can fail even when the attacker does not simply test every possible key. Instead, the attacker can exploit statistical properties of the underlying message.
 
-Cryptographers subsequently developed more sophisticated systems designed to reduce or obscure these patterns. **Polyalphabetic ciphers** represent an important step in this evolution. Instead of using one substitution throughout the entire message, they use several transformations according to the position of the character or according to a sequence controlled by a key.
+![[Pasted image 20261013180820.png]]
+
+Cryptographers subsequently developed more sophisticated systems designed to reduce or obscure these patterns. ***Polyalphabetic* ciphers** represent an important step in this evolution. Instead of using one substitution throughout the entire message, they use several transformations according to the position of the character or according to a sequence controlled by a key.
+
+![[College studies/4th year networking engineer/Cryptography/Definitions#🧠 - Polyalphabetic cipher|Definitions]]
 
 The **Vigenère cipher** is a famous historical example. In a numerical representation of the alphabet, a simplified version of its encryption rule can be written as:
 
@@ -170,25 +178,47 @@ $$
 
 The value $K_i$ depends on the position $i$ and on a key that is repeated or extended according to a defined rule. This makes straightforward frequency analysis less effective, but it does not provide modern security. Statistical properties and repetitions in the key can still be exploited.
 
-The evolution of classical cryptography therefore demonstrates a general phenomenon: **cryptographic improvements often lead to new forms of cryptanalysis**. Cryptography and cryptanalysis evolve together. A system that appears difficult to attack using the methods available at one point in history may become vulnerable after a new mathematical, statistical, or computational technique is developed.
+![[Pasted image 20261013181554.png]]
+
+The evolution of classical cryptography therefore demonstrates a general phenomenon: **cryptographic improvements often lead to new forms of cryptanalysis**. <u>Cryptography and cryptanalysis evolve together</u>. A system that appears difficult to attack using the methods available at one point in history may become vulnerable after a new mathematical, statistical, or computational technique is developed.
 
 This dynamic became particularly visible during the twentieth century with the development of electromechanical cipher machines. Rotor-based systems, of which **Enigma** is the most famous historical example, could produce transformations considerably more complex than simple manual substitutions. The cryptanalysis of these systems played a major role in the history of World War II and contributed to the development of systematic approaches to cryptanalysis.
 
-The analysis of historical cryptographic systems also contributed to the development of algorithmic thinking. When a system becomes complex, it is no longer enough to intuitively guess letter substitutions. The system must be modeled formally, its observable properties must be identified, and systematic procedures must be developed to search for weaknesses.
+The analysis of historical cryptographic systems also contributed to the development of algorithmic thinking. When a system becomes complex, it is no longer enough to intuitively guess letter substitutions. <mark style="background:#40a9ff">The system must be modeled formally, its observable properties must be identified, and systematic procedures must be developed to search for weaknesses</mark>.
 
-To understand attacks in general, it is useful to reason in terms of an **adversary model**. An adversary does not always have the same capabilities. In some situations, the attacker can only observe ciphertexts. In other situations, the attacker knows some plaintexts corresponding to observed ciphertexts. In stronger scenarios, the attacker may be able to choose messages and request that the system encrypt them, or may be able to submit selected ciphertexts to a decryption mechanism and observe the results.
+To understand attacks in general, it is useful to reason in terms of an **adversary model**. An adversary does not always have the same capabilities. 
 
-This leads to several classical attack models. In a **known-ciphertext scenario**, the attacker has ciphertexts and attempts to extract information from them. In a **known-plaintext attack**, the attacker possesses plaintext-ciphertext pairs $(M,C)$. In a **chosen-plaintext attack**, the attacker can choose messages and observe their encryptions. In a **chosen-ciphertext attack**, the attacker can select ciphertexts and observe the corresponding decryptions, subject to whatever restrictions the system imposes.
+In some situations, the attacker can only observe ciphertexts. 
 
-These models are important because an algorithm should not be considered secure merely because it survives a weak adversary. A cryptographic system operating over a network must generally assume that an attacker can observe, capture, replay, modify, reorder, and sometimes actively interact with messages. Modern cryptography therefore explicitly models the adversary's capabilities instead of assuming that the attacker can only passively read traffic.
+In other situations, the attacker knows some plaintexts corresponding to observed ciphertexts. 
 
-Attacks can also be classified according to their goals. An adversary may attempt to recover a secret key, recover a particular plaintext, distinguish encrypted data from random data, forge a valid message, modify a communication without detection, or obtain some other unauthorized advantage. Cryptanalysis should therefore not be reduced to "breaking the key."
+In stronger scenarios, the attacker may be able to choose messages and request that the system encrypt them, or may be able to submit selected ciphertexts to a decryption mechanism and observe the results.
 
-This point is particularly important. A system can be vulnerable even if an attacker never manages to recover the secret key. Suppose an attacker can modify a ciphertext in a predictable way and cause a corresponding change in the decrypted message. If the system does not detect this modification, a serious security failure exists even though the key remains secret.
+This leads to several classical *attack model*s. 
+
+In a **known-ciphertext scenario**, the attacker has ciphertexts and attempts to extract information from them.
+
+In a **known-plaintext attack**, the attacker possesses plaintext-ciphertext pairs $(M,C)$.
+
+In a **chosen-plaintext attack**, the attacker can choose messages and observe their encryptions.
+
+In a **chosen-ciphertext attack**, the attacker can select ciphertexts and observe the corresponding decryptions, subject to whatever restrictions the system imposes.
+
+![[College studies/4th year networking engineer/Cryptography/Terminology#𝑨 - Attack model|Terminology]]
+
+![[Pasted image 20261013182758.png]]
+
+<mark style="background:#40a9ff">These models are important because an algorithm should not be considered secure merely because it survives a weak adversary</mark>. <mark style="background:#ff4d4f">A cryptographic system operating over a network must generally assume that an attacker can observe, capture, replay, modify, reorder, and sometimes actively interact with messages</mark>. Modern cryptography therefore explicitly models the adversary's capabilities instead of assuming that the attacker can only passively read traffic.
+
+> Attacks can also be classified according to their goals. An adversary may attempt to recover a secret key, recover a particular plaintext, distinguish encrypted data from random data, forge a valid message, modify a communication without detection, or obtain some other unauthorized advantage. Cryptanalysis should therefore not be reduced to "breaking the key."
+
+This point is particularly important. <mark style="background:#ff4d4f">A system can be vulnerable even if an attacker never manages to recover the secret key</mark>. Suppose an attacker can modify a ciphertext in a predictable way and cause a corresponding change in the decrypted message. If the system does not detect this modification, a serious security failure exists even though the key remains secret.
 
 Historical attacks therefore taught cryptographers that security cannot be evaluated merely by asking whether a message appears sufficiently "scrambled." A ciphertext may look meaningless to a human while still being vulnerable to an efficient algorithm. Modern cryptography attempts to replace this intuition with precise definitions, explicit adversary models, and rigorous security analysis.
 
-One of the most important lessons of classical cryptography is therefore that **apparent obscurity is not a measure of security**. A cryptographic system should be evaluated according to the information available to an adversary, the computational resources required for attacks, the mathematical structure of the construction, and the security properties it is actually supposed to provide.
+One of the most important lessons of classical cryptography is therefore that **apparent *obscurity* is not a measure of security**. A cryptographic system should be evaluated according to the information available to an adversary, the computational resources required for attacks, the mathematical structure of the construction, and the security properties it is actually supposed to provide.
+
+![[College studies/4th year networking engineer/Cryptography/Terminology#𝑨 - Obscurity|Terminology]]
 
 ## 4. Modern Cryptography: New Aspects and Objectives
 

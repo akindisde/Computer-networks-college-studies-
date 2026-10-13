@@ -1,4 +1,4 @@
-#definition #cryptography
+#definition #college_studies
 
 ###### 🧠 - Number theory
 Number theory is a branch of pure mathematics dedicated to the study of the properties, relationships, and behavior of integers, prime numbers, and arithmetic functions. Often historically described as the queen of mathematics due to its abstract beauty, it explores foundational concepts such as divisibility, modular arithmetic, and Diophantine equations. While long valued purely for its intellectual elegance, modern number theory forms the core mathematical foundation of contemporary cryptography, securing global digital communications through complex algorithms like RSA and elliptic-curve cryptography.
@@ -12,11 +12,14 @@ the time it takes for the first bit of a signal to travel from a sender to a rec
 ###### 🧠 - Network service rate
 the speed of data transmission through a telecommunications system, a utility transmission charge, or an operational queue-processing capacity
 
-###### 🧠 - 
+###### 🧠 - Key space
+the total set of all possible, distinct, and valid keys that can be used with a specific encryption algorithm or cryptosystem
 
-###### 🧠 - 
+###### 🧠 - Monoalphabetic cipher
+a type of substitution cipher where each letter of the plaintext is consistently replaced by a single, fixed corresponding letter or symbol using one scrambled alphabet per message
 
-###### 🧠 - 
+###### 🧠 - Polyalphabetic cipher
+a classic encryption technique that uses **multiple substitution alphabets** to transform plaintext into ciphertext. It creates a **one-to-many relationship**: the same letter in a message can map to different letters depending on its position or a repeating keyword
 
 ###### 🧠 - 
 
