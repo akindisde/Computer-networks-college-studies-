@@ -222,17 +222,23 @@ One of the most important lessons of classical cryptography is therefore that **
 
 ## 4. Modern Cryptography: New Aspects and Objectives
 
-Modern cryptography emerged as the problem of information protection began to be formulated in mathematical and scientific terms. The objective was no longer simply to construct a mechanism complicated enough to prevent a human reader from understanding a message. Instead, cryptographers began to define precisely what an adversary could do, what the adversary should not be able to accomplish, and under what assumptions the system could be considered secure.
+Modern cryptography emerged as the problem of information protection began to be formulated in mathematical and scientific terms. The objective was no longer simply to construct a mechanism complicated enough to prevent a human reader from understanding a message. Instead, <mark style="background:#40a9ff">cryptographers began to define precisely what an adversary could do, what the adversary should not be able to accomplish, and under what assumptions the system could be considered secure</mark>.
 
 The arrival of computers produced a fundamental change. Computers can perform enormous numbers of operations quickly. A transformation that appears complicated to a human can be evaluated millions or billions of times by a machine. Conversely, a modern cryptographic system can use key spaces so large that exhaustive search becomes computationally infeasible with realistic resources.
 
-The notion of **cryptographic strength** is therefore closely connected to the resources required to perform an attack. It is not enough to ask whether an attack exists theoretically. We must also consider its computational complexity and its requirements in terms of time, memory, data, hardware, and access to the target system.
+The notion of **cryptographic strength** is therefore closely connected to the resources required to perform an attack. It is not enough to ask whether an attack exists theoretically. We must also consider <u>its computational complexity and its requirements in terms of time, memory, data, hardware, and access to the target system</u>.
 
-Modern cryptography also introduced a much clearer distinction between **cryptographic primitives** and **cryptographic protocols**. A primitive is a mathematical mechanism designed to provide a particular security property. Examples include block ciphers, stream ciphers, cryptographic hash functions, MACs, digital signatures, and cryptographically secure pseudorandom generators. A protocol combines primitives with communication rules and state-management procedures to achieve a larger security objective.
+Modern cryptography also introduced a much clearer distinction between **cryptographic primitives** and **cryptographic protocols**.
 
-This distinction is crucial in practice. A protocol can be vulnerable even when every cryptographic primitive it uses is individually secure. The problem may lie in how those primitives are combined, how keys are negotiated, how messages are ordered, how identities are verified, or how failures are handled. Security therefore has to be analyzed at the protocol level as well as at the primitive level.
+A primitive is a mathematical mechanism designed to provide <u>a particular security property</u>. Examples include block ciphers, stream ciphers, cryptographic hash functions, MACs, digital signatures, and cryptographically secure pseudorandom generators.
 
-Modern cryptography also greatly expanded the set of objectives being pursued. Confidentiality remains important, but it is now accompanied by integrity, authentication, secure key establishment, digital signatures, proof of possession, access-control mechanisms, secure randomness, and many other security goals.
+A protocol <u>combines</u> primitives with communication rules and state-management procedures to achieve a larger security objective.
+
+This distinction is crucial in practice. A protocol can be vulnerable even when every cryptographic primitive it uses is individually secure. The problem may lie in how those primitives are combined, how keys are negotiated, how messages are ordered, how identities are verified, or how failures are handled. **Security therefore has to be analyzed at the protocol level as well as at the primitive level.**
+
+Modern cryptography also greatly expanded the set of objectives being pursued. 
+
+Confidentiality remains important, but it is now accompanied by integrity, authentication, secure key establishment, digital signatures, proof of possession, access-control mechanisms, secure randomness, and many other security goals.
 
 **Symmetric cryptography** is one of the major modern families. In this model, communicating parties share a secret key, or use secret keys derived from a shared secret. A symmetric encryption scheme can be represented abstractly as:
 
@@ -246,29 +252,31 @@ $$
 M = D_K(C).  
 $$
 
-Block ciphers such as **AES** are major examples of this family. Symmetric cryptography is highly efficient and is therefore essential for protecting large quantities of data in real systems.
+Block ciphers such as **AES** are major examples of this family. Symmetric cryptography is highly efficient and is therefore essential for <u>protecting large quantities of data</u> in real systems.
 
-The second major family is **asymmetric cryptography**, also called **public-key cryptography**. It uses a pair of keys: a **public key**, which can be distributed openly, and a **private key**, which must remain secret. This separation enables solutions to problems that are difficult to address directly with symmetric cryptography, particularly key establishment and digital signatures.
+The second major family is **asymmetric cryptography**, also called **public-key cryptography**. It uses a pair of keys: a **public key**, which can be distributed openly, and a **private key**, which must remain secret. This separation enables solutions to problems that are difficult to address directly with symmetric cryptography, <u>particularly key establishment and digital signatures</u>.
 
 Public-key cryptography fundamentally changed the field because two parties can perform certain cryptographic operations without first sharing a secret key over a secure channel. **Diffie–Hellman key exchange**, for example, allows two parties to establish a shared secret based on public parameters and private values.
 
 However, public-key cryptography does not eliminate key-management problems. Instead, it changes their nature. The private key must be protected, while a public key must be reliably associated with the expected identity or role. This problem is central to **public-key infrastructures**, or **PKIs**, and to digital certificates.
 
-Modern cryptography is also deeply concerned with formal security definitions. A cryptographic construction is typically studied within a model in which the adversary's capabilities and objective are explicitly defined. For example, for an encryption scheme, one might require that an attacker cannot distinguish the encryption of one chosen message from the encryption of another chosen message, even after obtaining certain auxiliary information.
+![[College studies/4th year networking engineer/Cryptography/Q&A#❔ - What are the key-management problems in cryptography?|Q&A]]
 
-This leads to concepts such as **indistinguishability under chosen-plaintext attack**, commonly abbreviated **IND-CPA**. A stronger notion, **IND-CCA**, considers an adversary with certain decryption capabilities. These definitions illustrate the fundamental difference between classical and modern cryptography. Rather than asking only whether "the message is hidden," modern cryptography asks whether an adversary can obtain a precisely defined advantage despite precisely defined capabilities.
+Modern cryptography is also deeply concerned with <u>formal security definitions</u>. A cryptographic construction is typically studied within a model in which the adversary's capabilities and objective are explicitly defined. For example, for an encryption scheme, one might require that an attacker cannot distinguish the encryption of one chosen message from the encryption of another chosen message, even after obtaining certain auxiliary information.
 
-Another essential aspect is **cryptographic randomness**. Many modern systems depend on random or pseudorandom values that are unpredictable to an attacker. Keys, protocol nonces, initialization values, salts, and other security-critical values may depend on randomness. A weakness in random-number generation can therefore compromise an otherwise mathematically sound cryptographic system.
+This leads to concepts such as **indistinguishability under chosen-plaintext attack**, commonly abbreviated **IND-CPA**. A stronger notion, **IND-CCA**, considers an adversary with certain decryption capabilities. These definitions illustrate the fundamental difference between classical and modern cryptography. Rather than asking only whether "the message is hidden," modern cryptography asks <mark style="background:#ff4d4f">whether an adversary can obtain a precisely defined advantage despite precisely defined capabilities</mark>.
 
-Modern cryptography must also account for implementation. An algorithm can be secure within its mathematical model while its implementation remains vulnerable. **Side-channel attacks** are an important example. An attacker may exploit execution time, power consumption, electromagnetic emissions, cache behavior, or other physical characteristics to obtain information about secret keys.
+Another essential aspect is **cryptographic randomness**. Many modern systems depend on random or pseudorandom values that are unpredictable to an attacker. Keys, protocol nonces, initialization values, salts, and other security-critical values may depend on randomness. <mark style="background:#ff4d4f">A weakness in random-number generation can therefore compromise an otherwise mathematically sound cryptographic system</mark>.
 
-This leads to an important distinction between **algorithmic security** and **system security**. Algorithmic security concerns the mathematical properties of the cryptographic construction. System security also includes the implementation, key management, protocol design, interfaces, operating system, hardware, user behavior, and physical environment.
+Modern cryptography must also account for implementation. <mark style="background:#40a9ff">An algorithm can be secure within its mathematical model while its implementation remains vulnerable</mark>. **Side-channel attacks** are an important example. An attacker may exploit execution time, power consumption, electromagnetic emissions, cache behavior, or other <u>physical characteristics</u> to obtain information about secret keys.
 
-Modern cryptography must also account for changing computational capabilities. Key sizes and cryptographic parameters must be selected to provide sufficient security for the expected lifetime of the system. A key size that provides an acceptable security margin today may eventually become inadequate as computational technology advances.
+> This leads to an important distinction between **algorithmic security** and **system security**. Algorithmic security concerns the mathematical properties of the cryptographic construction. System security also includes the implementation, key management, protocol design, interfaces, operating system, hardware, user behavior, and physical environment.
+
+Modern cryptography must also account for <u>changing computational capabilities</u>. Key sizes and cryptographic parameters must be selected to provide sufficient security for the expected lifetime of the system. A key size that provides an acceptable security margin today may eventually become inadequate as computational technology advances.
 
 This issue has become especially important with the development of **quantum computing**. Certain quantum algorithms, most notably **Shor's algorithm**, threaten important families of currently deployed public-key cryptography, particularly systems based on integer factorization and discrete logarithms. **Grover's algorithm**, meanwhile, affects the complexity of certain exhaustive searches and must be considered when evaluating the security of symmetric primitives.
 
-These developments have led to **post-quantum cryptography**, whose goal is to construct cryptographic mechanisms that remain secure against attackers equipped with sufficiently powerful quantum computers. This development illustrates an important characteristic of cryptography: cryptographic security is not static. It must evolve as the capabilities of adversaries evolve.
+These developments have led to **post-quantum cryptography**, whose goal is to construct cryptographic mechanisms that remain secure against attackers equipped with sufficiently powerful quantum computers. This development illustrates an important characteristic of cryptography: <mark style="background:#ff4d4f">cryptographic security is not static</mark>. It must evolve as the capabilities of adversaries evolve.
 
 Modern cryptography therefore extends far beyond the simple idea of "hiding a message." It is a discipline concerned with constructing mechanisms that protect confidentiality, detect unauthorized modification, authenticate entities and data, establish shared secrets, produce digital signatures, and secure protocols against adversaries whose capabilities are explicitly modeled.
 
@@ -280,6 +288,6 @@ Cryptography evolved from a collection of historical techniques for concealing m
 
 The basic concepts of plaintext, ciphertext, key, encryption, decryption, cryptography, cryptanalysis, and cryptology form the vocabulary needed for further study. Encryption must be distinguished from encoding, compression, and hashing because these mechanisms serve fundamentally different purposes.
 
-Modern cryptography addresses several security objectives, including confidentiality, integrity, and authentication. It uses multiple families of primitives, including symmetric cryptography, public-key cryptography, cryptographic hash functions, MACs, and digital signatures. These primitives are integrated into protocols that must be analyzed under explicit adversary models.
+Modern cryptography addresses several security objectives, including confidentiality, integrity, authentication, and non-repudiation. It uses multiple families of primitives, including symmetric cryptography, public-key cryptography, cryptographic hash functions, MACs, and digital signatures. These primitives are integrated into protocols that must be analyzed under explicit adversary models.
 
 The most important principle to carry forward is that **modern cryptography does not depend on an algorithm merely looking complicated or remaining secret. It depends on public and well-analyzed constructions, properly managed keys, explicit assumptions, precise security definitions, and rigorous analysis of the adversary's capabilities.** This way of thinking will form the foundation for the chapters that follow.
